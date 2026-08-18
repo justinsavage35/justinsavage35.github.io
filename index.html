@@ -1,293 +1,369 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Your Name - Homepage</title>
+  <title>Your Name | Software Engineer & Researcher</title>
   <style>
-    /* Reset & Typography */
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --accent-bg: #eff6ff;
+      --accent-border: #bfdbfe;
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
       line-height: 1.6;
-      color: #333;
-      background-color: #fcfcfc;
+      color: var(--text);
+      background-color: var(--bg);
+      -webkit-font-smoothing: antialiased;
     }
-    a { color: #0366d6; text-decoration: none; }
-    a:hover { text-decoration: underline; }
 
-    /* Navigation Bar */
+    a { color: var(--primary); text-decoration: none; font-weight: 500; }
+    a:hover { color: var(--primary-hover); text-decoration: underline; }
+
+    /* Sticky Navbar */
     nav {
       position: sticky;
       top: 0;
-      background: #ffffff;
-      border-bottom: 1px solid #e1e4e8;
-      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
       z-index: 1000;
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
     }
     nav a {
-      margin: 0 12px;
-      font-weight: 500;
-      color: #444;
+      color: var(--text-muted);
       font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.15s;
     }
-    nav a:hover { color: #0366d6; }
+    nav a:hover { color: var(--primary); text-decoration: none; }
 
-    /* Layout Container */
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 860px;
+      margin: 40px auto 80px;
+      padding: 0 24px;
     }
 
     /* Profile Header */
     .profile-header {
       display: flex;
       flex-direction: row;
-      gap: 30px;
+      gap: 36px;
       align-items: center;
       margin-bottom: 40px;
     }
     .profile-photo {
-      width: 190px;
-      height: 190px;
+      width: 170px;
+      height: 170px;
       border-radius: 50%;
       object-fit: cover;
-      border: 1px solid #ddd;
-    }
-    .profile-info h1 {
-      font-size: 1.8rem;
-      margin-bottom: 5px;
-    }
-    .profile-info .title {
-      font-size: 1.1rem;
-      color: #555;
-      margin-bottom: 10px;
-    }
-    .profile-info .links a {
-      display: inline-block;
-      margin-right: 12px;
-      margin-top: 5px;
-      font-weight: 600;
-    }
-
-    /* Section Styling */
-    section {
-      margin-bottom: 45px;
-    }
-    h2 {
-      font-size: 1.4rem;
-      border-bottom: 2px solid #eaecef;
-      padding-bottom: 6px;
-      margin-bottom: 16px;
-      color: #222;
-    }
-
-    /* News List */
-    .news-list {
-      list-style: none;
-      max-height: 250px;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-    .news-list li {
-      margin-bottom: 10px;
-      font-size: 0.95rem;
-    }
-    .news-date {
-      font-weight: bold;
-      color: #555;
-    }
-
-    /* Publications List */
-    .pub-item {
-      display: flex;
-      gap: 20px;
-      margin-bottom: 25px;
-      align-items: flex-start;
-    }
-    .pub-thumb {
-      width: 170px;
-      height: 105px;
-      object-fit: cover;
-      border-radius: 4px;
-      border: 1px solid #eee;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
       flex-shrink: 0;
     }
-    .pub-details h3 {
+    .profile-info h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.2;
+    }
+    .profile-info .tagline {
       font-size: 1.05rem;
-      margin-bottom: 4px;
-      line-height: 1.3;
+      color: var(--primary);
+      font-weight: 600;
+      margin: 6px 0 12px;
     }
-    .pub-authors {
-      font-size: 0.9rem;
-      color: #444;
-      margin-bottom: 3px;
+    .profile-info .meta {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
     }
-    .pub-venue {
-      font-size: 0.9rem;
-      font-style: italic;
-      color: #666;
+
+    .badge-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .badge-links a {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .badge-links a:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      text-decoration: none;
+      background: #f1f5f9;
+    }
+
+    /* Highlight Banner for PhD Goals */
+    .phd-banner {
+      background: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 35px;
+      font-size: 0.95rem;
+    }
+    .phd-banner strong { color: #1e40af; }
+
+    /* Sections */
+    section { margin-bottom: 45px; }
+    h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #0f172a;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Cards (Projects / Experience / Publications) */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 18px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+      transform: translateY(-1px);
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       margin-bottom: 6px;
     }
-    .pub-links a {
-      display: inline-block;
-      margin-right: 8px;
-      padding: 1px 7px;
-      background: #eef2f8;
-      border-radius: 3px;
-      font-size: 0.8rem;
-      border: 1px solid #d0d7de;
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #0f172a;
     }
-    .pub-links a:hover {
-      background: #0366d6;
-      color: #fff;
-      text-decoration: none;
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
     }
-    .highlight-tag {
-      color: #d9381e;
-      font-weight: bold;
+    .card-date {
       font-size: 0.85rem;
-      margin-top: 4px;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+    .card-body {
+      font-size: 0.92rem;
+      color: #334155;
+      margin-bottom: 12px;
+    }
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      padding: 2px 8px;
+      background: #f1f5f9;
+      color: #475569;
+      border-radius: 4px;
+      font-weight: 500;
     }
 
-    /* Footer */
+    /* Bulleted items for Education & Skills */
+    .timeline-item {
+      margin-bottom: 18px;
+    }
+    .timeline-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #0f172a;
+    }
+    .timeline-item .sub {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
     footer {
       text-align: center;
-      padding: 30px 0;
       font-size: 0.85rem;
-      color: #888;
-      border-top: 1px solid #eaecef;
+      color: var(--text-muted);
+      padding: 30px 0;
+      border-top: 1px solid var(--border);
     }
 
-    /* Responsive */
     @media (max-width: 650px) {
       .profile-header {
         flex-direction: column;
         text-align: center;
       }
-      .pub-item {
-        flex-direction: column;
-      }
-      .pub-thumb {
-        width: 100%;
-        height: auto;
-      }
-      nav a {
-        display: inline-block;
-        margin: 4px 6px;
-      }
+      .badge-links { justify-content: center; }
+      .card-header { flex-direction: column; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
   <nav>
     <a href="#about">About</a>
-    <a href="#news">News</a>
-    <a href="#publications">Publications</a>
-    <a href="#teaching">Teaching</a>
-    <a href="#service">Service</a>
+    <a href="#research">Research & PhD</a>
+    <a href="#experience">Experience</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects & Code</a>
   </nav>
 
   <div class="container">
 
-    <!-- Profile Section -->
+    <!-- Profile Info -->
     <div class="profile-header" id="about">
-      <img src="profile.jpg" alt="Your Name" class="profile-photo" onerror="this.src='https://via.placeholder.com/190'"/>
+      <img src="profile.jpg" alt="Your Name" class="profile-photo" onerror="this.src='https://via.placeholder.com/170'" />
       <div class="profile-info">
-        <h1>Your Name (姓名)</h1>
-        <p class="title">Assistant Professor / PhD Candidate / Researcher</p>
-        <p>Department of Computer Science<br>University Name<br>City, Country</p>
-        <p>Email: <a href="mailto:your.email@university.edu">your.email@university.edu</a></p>
-        <div class="links">
-          <a href="#">[CV]</a>
-          <a href="#">[Google Scholar]</a>
-          <a href="#">[GitHub]</a>
-          <a href="#">[Twitter/X]</a>
+        <h1>Your Name</h1>
+        <div class="tagline">Software Engineer @ ShapeSpace | HPC & Applied Geometry Enthusiast</div>
+        <div class="meta">
+          Edinburgh / Remote &bull; <a href="mailto:youremail@domain.com">youremail@domain.com</a>
+        </div>
+        <div class="badge-links">
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Google Scholar</a>
+          <a href="cv.pdf">Download CV</a>
         </div>
       </div>
     </div>
 
-    <!-- Biography / Research Summary -->
+    <!-- PhD Candidate / Looking for Supervisor Callout -->
+    <div class="phd-banner" id="research">
+      <strong>🎯 Prospective PhD Applicant:</strong> I am actively exploring PhD opportunities in <strong>Geometric Deep Learning, Computational Geometry, GPU Acceleration, and 3D Generative AI / CAD analysis</strong>. Feel free to connect or review my background below.
+    </div>
+
+    <!-- About Section -->
     <section>
-      <h2>Biography</h2>
+      <h2>About Me</h2>
       <p>
-        I am an Assistant Professor / Researcher at [University/Company]. My research focuses on 
-        <strong>Computer Vision, Graphics, and Machine Learning</strong>. Prior to this, I completed my PhD 
-        at [University] supervised by Prof. [Advisor Name].
+        I am a Software Engineer at <strong>ShapeSpace</strong>, where I develop algorithms for 3D search, geometry processing, and CAD feature analysis. 
       </p>
       <p style="margin-top: 10px;">
-        <strong>Prospective Students:</strong> I am always looking for motivated PhD, Master, and undergraduate students. Feel free to reach out with your CV and research interests.
+        My foundation spans a dual background: a Master's in <strong>High Performance Computing (HPC) with Data Science</strong> and an undergraduate/master's background in <strong>Mechanical Engineering</strong>. This gives me a unique vantage point across computational physics, large-scale parallelization (CUDA/MPI/OpenMP), and modern applied deep learning for 3D geometric representations.
       </p>
     </section>
 
-    <!-- News Section -->
-    <section id="news">
-      <h2>Recent News</h2>
-      <ul class="news-list">
-        <li><span class="news-date">[08/2026]</span> One paper accepted to SIGGRAPH 2026! 🎉</li>
-        <li><span class="news-date">[05/2026]</span> Invited to give a talk at AI Seminar 2026.</li>
-        <li><span class="news-date">[02/2026]</span> Two papers accepted to CVPR 2026.</li>
-      </ul>
-    </section>
+    <!-- Experience -->
+    <section id="experience">
+      <h2>Experience</h2>
 
-    <!-- Publications Section -->
-    <section id="publications">
-      <h2>Selected Publications</h2>
-      
-      <!-- Paper Item 1 -->
-      <div class="pub-item">
-        <img src="paper1.jpg" alt="Paper teaser" class="pub-thumb" onerror="this.src='https://via.placeholder.com/170x105'" />
-        <div class="pub-details">
-          <h3>Your Paper Title: Towards Novel 3D Representations</h3>
-          <p class="pub-authors"><strong>Your Name</strong>, Author Two, Author Three</p>
-          <p class="pub-venue">ACM Transactions on Graphics (SIGGRAPH 2026)</p>
-          <div class="pub-links">
-            <a href="#">Project Page</a>
-            <a href="#">Paper (PDF)</a>
-            <a href="#">Code</a>
-            <a href="#">Video</a>
-          </div>
-          <div class="highlight-tag">⭐ Highlight / Oral Presentation</div>
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Software Engineer</div>
+          <div class="card-date">2024 &ndash; Present</div>
         </div>
-      </div>
-
-      <!-- Paper Item 2 -->
-      <div class="pub-item">
-        <img src="paper2.jpg" alt="Paper teaser" class="pub-thumb" onerror="this.src='https://via.placeholder.com/170x105'" />
-        <div class="pub-details">
-          <h3>Interactive Generative Models for Creative Design</h3>
-          <p class="pub-authors">Author One, <strong>Your Name</strong>, Author Three</p>
-          <p class="pub-venue">IEEE Conference on Computer Vision and Pattern Recognition (CVPR 2025)</p>
-          <div class="pub-links">
-            <a href="#">Project Page</a>
-            <a href="#">Paper (PDF)</a>
-            <a href="#">Code</a>
-          </div>
+        <div class="card-subtitle">ShapeSpace Ltd &bull; Edinburgh, UK</div>
+        <div class="card-body">
+          Leading engineering efforts on scalable 3D geometric shape search engines and CAD model indexing. Optimizing spatial data pipelines and compute-heavy geometric feature extraction algorithms.
+        </div>
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Python</span>
+          <span class="tag">3D Geometry</span>
+          <span class="tag">CAD / B-Rep</span>
+          <span class="tag">Cloud Infra</span>
         </div>
       </div>
     </section>
 
-    <!-- Teaching / Services -->
-    <section id="teaching">
-      <h2>Teaching</h2>
-      <ul style="padding-left: 20px;">
-        <li>CS 101: Introduction to Computer Graphics (Fall 2025, Fall 2026)</li>
-        <li>CS 502: Advanced Deep Learning for 3D Vision (Spring 2026)</li>
-      </ul>
+    <!-- Projects & Research -->
+    <section id="projects">
+      <h2>Featured Projects & Research</h2>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Parallel Scalable Geometric Processing Engine</div>
+          <div class="card-date">HPC Dissertation / Project</div>
+        </div>
+        <div class="card-subtitle">MSc in HPC with Data Science</div>
+        <div class="card-body">
+          Implemented high-throughput distributed mesh processing and KD-tree acceleration structures using MPI and CUDA. Achieved significant speedups over existing CPU baseline implementations.
+        </div>
+        <div class="tags">
+          <span class="tag">CUDA</span>
+          <span class="tag">C++20</span>
+          <span class="tag">MPI</span>
+          <span class="tag">OpenMP</span>
+          <span class="tag">Mesh Processing</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">Computational Physics & Finite Element Acceleration</div>
+          <div class="card-date">Mechanical Engineering Focus</div>
+        </div>
+        <div class="card-subtitle">Engineering Research</div>
+        <div class="card-body">
+          Developed custom solvers for non-linear solid mechanics simulations and stress tensor calculations using sparse linear algebra routines.
+        </div>
+        <div class="tags">
+          <span class="tag">FEA</span>
+          <span class="tag">Python</span>
+          <span class="tag">Numerical Methods</span>
+          <span class="tag">Solid Mechanics</span>
+        </div>
+      </div>
     </section>
 
-    <section id="service">
-      <h2>Academic Services</h2>
-      <p><strong>Conference Reviewer / Program Committee:</strong> SIGGRAPH, CVPR, ICCV, ECCV, NeurIPS.</p>
+    <!-- Education -->
+    <section id="education">
+      <h2>Education</h2>
+
+      <div class="timeline-item">
+        <h4>MSc in High Performance Computing with Data Science</h4>
+        <div class="sub">University of Edinburgh &bull; <em>Distinction / Merit</em></div>
+        <p style="font-size: 0.9rem; color: #475569;">Key modules: Parallel Design Patterns, Advanced CUDA, Distributed Systems, Machine Learning in HPC.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h4>BSc / BEng / MSc in Mechanical Engineering</h4>
+        <div class="sub">University Name</div>
+        <p style="font-size: 0.9rem; color: #475569;">Focus: Computational Mechanics, CAD/CAM Systems, Fluid & Solid Dynamics.</p>
+      </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Core Skills -->
+    <section id="skills">
+      <h2>Technical Arsenal</h2>
+      <p style="font-size: 0.95rem; margin-bottom: 8px;"><strong>Languages:</strong> C++, Python, CUDA, C, Bash, SQL, Rust (familiar)</p>
+      <p style="font-size: 0.95rem; margin-bottom: 8px;"><strong>HPC & Systems:</strong> MPI, OpenMP, SLURM, Multi-threading, Profiling (NVVP/Nsight, Valgrind)</p>
+      <p style="font-size: 0.95rem; margin-bottom: 8px;"><strong>Geometry & AI:</strong> PyTorch, Libigl, Open3D, CGAL, Trimesh, CAD Kernel APIs</p>
+    </section>
+
     <footer>
-      &copy; <span id="year"></span> Your Name. Hosted on GitHub Pages.
+      &copy; <span id="year"></span> Your Name. Built and hosted with GitHub Pages.
     </footer>
 
   </div>
